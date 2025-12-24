@@ -1,2 +1,8 @@
-main {
+html,body{
+  margin: 0;
+  padding: 0;
+  overflow: auto; /* or scroll */
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;     /* Firefox */
+  scroll-behavior:smooth;
 }

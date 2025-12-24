@@ -1,0 +1,111 @@
+/* Footer.css */
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700;800&display=swap');
+
+/* 🔴 KEY FIX 1: avoid 100vw */
+.footer {
+  width: 100%;
+  min-height: 43vh;
+  background: linear-gradient(135deg, #0f0c29 0%, #302b63 25%, #24243e 50%, #0f0c29 100%);
+  background-size: 400% 400%;
+  animation: gradientBG 15s ease infinite;
+  position: relative;
+  overflow: hidden; /* 🔴 hard stop overflow */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem 0.70rem;
+}
+
+/* 🔴 FIX 2: prevent pseudo-elements from causing scroll */
+.footer::before,
+.footer::after {
+  max-width: 100%;
+  overflow: hidden;
+}
+
+/* Footer Content */
+.footer-content {
+ 
+  position: relative;
+  z-index: 3;
+  text-align: center;
+  margin-bottom: 13rem;
+  
+  
+}
+
+/* Footer Name Container */
+.footer-name {
+  position: absolute;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%); /* 🔴 center safely */
+  width: 100%;
+  max-width: 100%;
+  height: 29vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden; /* 🔴 critical */
+  pointer-events: none;
+  z-index: 2;
+  margin-bottom:10px;
+}
+
+/* 🔴 FIX 3: control giant text width */
+.footer-name::before,
+.footer-name::after {
+  content: 'SoloTrack';
+  position: absolute;
+  width: 100%;
+  text-align: center;
+  white-space: nowrap;
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(6rem, 18vw, 18rem); /* 🔴 responsive text */
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: 0.039em;
+}
+
+/* Gradient text */
+.footer-name::before {
+  background: linear-gradient(90deg, #667eea, #764ba2, #ef4444, #667eea);
+  background-size: 300% 100%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  animation: gradientText 8s linear infinite;
+}
+
+/* Outline text */
+.footer-name::after {
+  color: transparent;
+  -webkit-text-stroke: 2px rgba(255, 255, 255, 0.1);
+  z-index: -1;
+}
+
+/* 🔴 OPTIONAL: prevent body scroll (safe) */
+body {
+  overflow-x: hidden;
+}
+
+/* Animations remain unchanged */
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+@keyframes gradientText {
+  0% { background-position: 0% 50%; }
+  100% { background-position: 300% 50%; }
+}
+
+.f1{
+  color:white;
+  font-size:2rem;
+}

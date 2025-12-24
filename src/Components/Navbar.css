@@ -1,0 +1,189 @@
+/* Navbar Dark Theme with Full Animations */
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1px 40px;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  animation: slideDown 0.5s ease-out;
+  gap: 52px;
+}
+
+/* Animation */
+@keyframes slideDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+/* ---------------- LOGO ---------------- */
+.logoicon {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  cursor: pointer;
+}
+
+.logoicon svg {
+  width: 100px;
+  h0eight:100px;
+}
+
+.logoicon:hover {
+  transform: scale(1.1);
+  transition: 0.3s ease;
+}
+
+/* ---------------- LEFT MENU ---------------- */
+.left {
+  flex: 1;
+
+}
+
+.left ul {
+  display: flex;
+  align-items: center;
+  gap: 2.5rem;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.left ul li {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  color: #e0e0e0;
+  font-size: 1.25rem;
+ font-family: 'Roboto', sans-serif, 'Arial', sans-serif;
+  cursor: pointer;
+  padding: 0.6rem 1rem;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.05);
+  transition: all 0.3s ease;
+}
+
+.left ul li:hover {
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: #fff;
+  transform: translateY(-3px);
+}
+
+.left ul li svg {
+  width: 22px;
+  height: 22px;
+}
+
+/* ---------------- RIGHT SECTION ---------------- */
+.right {
+  display: flex;
+  align-items: center;
+  gap: 1.45rem;
+}
+
+/* Search Bar */
+.searchbar {
+  position: relative;
+}
+
+.searchbar input {
+  width: 250px;
+  padding: 0.9rem 2.68rem 1.0rem 1.1rem;
+  border-radius: 25px;
+  border: 2px solid rgba(102, 126, 234, 0.3);
+  background: rgba(255, 255, 255, 0.05);
+  color: #e0e0e0;
+  outline: none;
+  transition: 0.3s ease;
+}
+
+.searchbar input:focus {
+  width: 300px;
+  border-color: #6a7dd2;
+  background: rgb(245, 245, 245, 0.1);
+}
+
+
+.searchbar svg {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+}
+
+/* ---------------- BELL ICON ---------------- */
+.bellicon {
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.05);
+  transition: 0.3s ease;
+  position: relative;
+}
+
+.bellicon svg {
+  width: 28px;
+  height: 28px;
+}
+
+.bellicon:hover {
+  background: linear-gradient(135deg, #ffd700, #ffa500);
+  transform: scale(1.1);
+}
+
+/* Notification dot */
+.bellicon::after {
+  content: '';
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  width: 8px;
+  height: 8px;
+  background: red;
+  border-radius: 50%;
+}
+
+/* ---------------- PROFILE ICON ---------------- */
+.profileicon {
+  cursor: pointer;
+  padding: 0.3rem;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  transition: 0.3s ease;
+}
+
+.profileicon svg {
+  width: 42px;
+  height: 42px;
+}
+
+.profileicon:hover {
+  transform: scale(1.1);
+}
+
+/* ---------------- RESPONSIVE ---------------- */
+@media (max-width: 768px) {
+  .navbar {
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .left ul {
+    flex-wrap: wrap;
+  }
+
+  .searchbar input {
+    width: 140px;
+  }
+}
