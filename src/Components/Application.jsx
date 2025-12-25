@@ -41,6 +41,7 @@ function Application() {
   ];
 
   const [form, setForm] = useState(initialForm);
+  const [editingId, setEditingId] = useState(null);
   const [applications, setApplications] = useState(() => {
     const saved = localStorage.getItem("solotrack_applications");
     if (saved) {
