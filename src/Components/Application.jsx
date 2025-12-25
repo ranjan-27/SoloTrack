@@ -47,17 +47,21 @@ function Application() {
   useEffect(() => {
     const saved = localStorage.getItem("solotrack_applications");
     if (saved) {
-      setApplications(JSON.parse(saved));
+      try {
+        setApplications(JSON.parse(saved));
+      } catch (e) {
+        console.error("Error parsing applications", e);
+      }
     }
   }, []);
 
   useEffect(() => {
-    if (applications.length > 0 || localStorage.getItem("solotrack_applications")) {
-      localStorage.setItem(
-        "solotrack_applications",
-        JSON.stringify(applications)
-      );
-    }
+    // Only save if applications state is not empty OR if we intentionally cleared it
+    // The previous check was too restrictive or incorrect for initialization
+    localStorage.setItem(
+      "solotrack_applications",
+      JSON.stringify(applications)
+    );
   }, [applications]);
 
   const handleChange = (e) => {
