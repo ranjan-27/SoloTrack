@@ -46,14 +46,18 @@ function Application() {
 
   useEffect(() => {
     const saved = localStorage.getItem("solotrack_applications");
-    if (saved) setApplications(JSON.parse(saved));
+    if (saved) {
+      setApplications(JSON.parse(saved));
+    }
   }, []);
 
   useEffect(() => {
-    localStorage.setItem(
-      "solotrack_applications",
-      JSON.stringify(applications)
-    );
+    if (applications.length > 0 || localStorage.getItem("solotrack_applications")) {
+      localStorage.setItem(
+        "solotrack_applications",
+        JSON.stringify(applications)
+      );
+    }
   }, [applications]);
 
   const handleChange = (e) => {

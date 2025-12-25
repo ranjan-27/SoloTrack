@@ -19,8 +19,13 @@ const Analytics = () => {
 
   // Load applications from localStorage
   useEffect(() => {
-    const saved = localStorage.getItem("solotrack_applications");
-    if (saved) setApplications(JSON.parse(saved));
+    const loadData = () => {
+      const saved = localStorage.getItem("solotrack_applications");
+      if (saved) setApplications(JSON.parse(saved));
+    };
+    loadData();
+    window.addEventListener('storage', loadData);
+    return () => window.removeEventListener('storage', loadData);
   }, []);
 
   // Status distribution data

@@ -5,8 +5,13 @@ const Dashboard = ({ darkMode = false }) => {
   const [applications, setApplications] = useState([]);
 
   useEffect(() => {
-    const saved = localStorage.getItem("solotrack_applications");
-    if (saved) setApplications(JSON.parse(saved));
+    const loadData = () => {
+      const saved = localStorage.getItem("solotrack_applications");
+      if (saved) setApplications(JSON.parse(saved));
+    };
+    loadData();
+    window.addEventListener('storage', loadData);
+    return () => window.removeEventListener('storage', loadData);
   }, []);
 
   const stats = {
