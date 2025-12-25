@@ -15,15 +15,31 @@ import {
 import "./Analytics.css";
 
 const Analytics = () => {
-  const [applications, setApplications] = useState([]);
+  const [applications, setApplications] = useState(() => {
+    const saved = localStorage.getItem("solotrack_applications");
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        console.error("Error parsing analytics data", e);
+        return [];
+      }
+    }
+    return [];
+  });
 
   // Load applications from localStorage
   useEffect(() => {
     const loadData = () => {
       const saved = localStorage.getItem("solotrack_applications");
-      if (saved) setApplications(JSON.parse(saved));
+      if (saved) {
+        try {
+          setApplications(JSON.parse(saved));
+        } catch (e) {
+          console.error("Sync error", e);
+        }
+      }
     };
-    loadData();
     window.addEventListener('storage', loadData);
     return () => window.removeEventListener('storage', loadData);
   }, []);

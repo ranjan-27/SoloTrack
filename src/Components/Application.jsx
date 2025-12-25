@@ -41,23 +41,20 @@ function Application() {
   ];
 
   const [form, setForm] = useState(initialForm);
-  const [applications, setApplications] = useState([]);
-  const [editingId, setEditingId] = useState(null);
-
-  useEffect(() => {
+  const [applications, setApplications] = useState(() => {
     const saved = localStorage.getItem("solotrack_applications");
     if (saved) {
       try {
-        setApplications(JSON.parse(saved));
+        return JSON.parse(saved);
       } catch (e) {
-        console.error("Error parsing applications", e);
+        console.error("Error parsing initial applications", e);
+        return [];
       }
     }
-  }, []);
+    return [];
+  });
 
   useEffect(() => {
-    // Only save if applications state is not empty OR if we intentionally cleared it
-    // The previous check was too restrictive or incorrect for initialization
     localStorage.setItem(
       "solotrack_applications",
       JSON.stringify(applications)

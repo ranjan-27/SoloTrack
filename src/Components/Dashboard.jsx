@@ -2,14 +2,30 @@ import React, { useEffect, useState } from "react";
 import "./Dashboard.css";
 
 const Dashboard = ({ darkMode = false }) => {
-  const [applications, setApplications] = useState([]);
+  const [applications, setApplications] = useState(() => {
+    const saved = localStorage.getItem("solotrack_applications");
+    if (saved) {
+      try {
+        return JSON.parse(saved);
+      } catch (e) {
+        console.error("Error parsing dashboard data", e);
+        return [];
+      }
+    }
+    return [];
+  });
 
   useEffect(() => {
     const loadData = () => {
       const saved = localStorage.getItem("solotrack_applications");
-      if (saved) setApplications(JSON.parse(saved));
+      if (saved) {
+        try {
+          setApplications(JSON.parse(saved));
+        } catch (e) {
+          console.error("Sync error", e);
+        }
+      }
     };
-    loadData();
     window.addEventListener('storage', loadData);
     return () => window.removeEventListener('storage', loadData);
   }, []);
