@@ -1,0 +1,322 @@
+/* Minimal Flat Dashboard */
+.dashboard-container {
+  padding: 3rem;
+  min-height: 100vh;
+  background: #fafafa;
+}
+
+.dashboard-container.dark {
+  background: #0d1117;
+  color: #c9d1d9;
+}
+
+.dashboard-title {
+  font-size: 3rem;
+  margin-bottom: 3rem;
+  font-weight: 300;
+  letter-spacing: -0.5px;
+  color: #24292e;
+  position: relative;
+  display: inline-block;
+}
+
+.dashboard-container.dark .dashboard-title {
+  color: #f0f6fc;
+}
+
+.dashboard-title::after {
+  content: '';
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  width: 80px;
+  height: 3px;
+  background: #24292e;
+  transition: width 0.3s ease;
+}
+
+.dashboard-container.dark .dashboard-title::after {
+  background: #f0f6fc;
+}
+
+.dashboard-title:hover::after {
+  width: 120px;
+}
+
+/* Clean Stats Grid */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 4rem;
+}
+
+.stat-card {
+  padding: 2rem;
+  border-radius: 12px;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+  background: white;
+  border: 2px solid transparent;
+}
+
+.dashboard-container.dark .stat-card {
+  background: #161b22;
+}
+
+.stat-card:hover {
+  transform: translateY(-4px);
+  border-color: #0366d6;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+}
+
+.dashboard-container.dark .stat-card:hover {
+  border-color: #58a6ff;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+}
+
+.stat-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 4px;
+  background: #0366d6;
+  transform: scaleX(0);
+  transition: transform 0.3s ease;
+}
+
+.dashboard-container.dark .stat-card::before {
+  background: #58a6ff;
+}
+
+.stat-card:hover::before {
+  transform: scaleX(1);
+}
+
+.stat-icon {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  color: #0366d6;
+  transition: transform 0.3s ease;
+}
+
+.dashboard-container.dark .stat-icon {
+  color: #58a6ff;
+}
+
+.stat-card:hover .stat-icon {
+  transform: scale(1.1);
+}
+
+.stat-title {
+  margin: 0.5rem 0;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 1.5px;
+  color: #586069;
+  font-weight: 500;
+}
+
+.dashboard-container.dark .stat-title {
+  color: #8b949e;
+}
+
+.stat-value {
+  font-size: 2.8rem;
+  font-weight: 300;
+  margin: 0.5rem 0;
+  color: #24292e;
+  font-family: 'SF Mono', monospace;
+}
+
+.dashboard-container.dark .stat-value {
+  color: #f0f6fc;
+}
+
+/* Flat Deadlines Card */
+.deadlines-card {
+  padding: 2.5rem;
+  border-radius: 12px;
+  background: white;
+  border: 2px solid #e1e4e8;
+}
+
+.dashboard-container.dark .deadlines-card {
+  background: #161b22;
+  border-color: #30363d;
+}
+
+.deadlines-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.deadlines-title {
+  font-size: 1.6rem;
+  font-weight: 400;
+  color: #24292e;
+}
+
+.dashboard-container.dark .deadlines-title {
+  color: #f0f6fc;
+}
+
+.view-all-btn {
+  padding: 8px 16px;
+  border: 1px solid #d1d5da;
+  background: #f6f8fa;
+  color: #24292e;
+  border-radius: 6px;
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dashboard-container.dark .view-all-btn {
+  background: #21262d;
+  border-color: #30363d;
+  color: #c9d1d9;
+}
+
+.view-all-btn:hover {
+  background: #e1e4e8;
+}
+
+.dashboard-container.dark .view-all-btn:hover {
+  background: #30363d;
+}
+
+.deadlines-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.deadline-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.2rem;
+  border-radius: 8px;
+  border: 1px solid #e1e4e8;
+  background: #f6f8fa;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.dashboard-container.dark .deadline-item {
+  background: #0d1117;
+  border-color: #30363d;
+}
+
+.deadline-item:hover {
+  background: white;
+  border-color: #0366d6;
+  transform: translateX(5px);
+}
+
+.dashboard-container.dark .deadline-item:hover {
+  background: #21262d;
+  border-color: #58a6ff;
+}
+
+.deadline-item.urgent {
+  border-left: 4px solid #cf222e;
+  animation: blink-border 2s infinite;
+}
+
+@keyframes blink-border {
+  0%, 100% { border-left-color: #cf222e; }
+  50% { border-left-color: #ff7b72; }
+}
+
+.deadline-content h4 {
+  margin: 0 0 0.5rem 0;
+  font-size: 1.1rem;
+  font-weight: 500;
+  color: #24292e;
+}
+
+.dashboard-container.dark .deadline-content h4 {
+  color: #f0f6fc;
+}
+
+.deadline-role {
+  margin: 0;
+  font-size: 0.9rem;
+  color: #586069;
+}
+
+.dashboard-container.dark .deadline-role {
+  color: #8b949e;
+}
+
+.deadline-info {
+  text-align: right;
+}
+
+.deadline-days {
+  font-size: 1.3rem;
+  font-weight: 500;
+  font-family: 'SF Mono', monospace;
+}
+
+.deadline-date {
+  font-size: 0.85rem;
+  color: #586069;
+  margin-top: 4px;
+}
+
+.dashboard-container.dark .deadline-date {
+  color: #8b949e;
+}
+
+/* Minimal Progress Bars */
+.minimal-progress {
+  width: 100%;
+  height: 3px;
+  background: #e1e4e8;
+  border-radius: 2px;
+  margin-top: 1rem;
+  overflow: hidden;
+}
+
+.dashboard-container.dark .minimal-progress {
+  background: #30363d;
+}
+
+.progress-bar {
+  height: 100%;
+  background: #2ea44f;
+  transition: width 0.6s ease;
+}
+
+/* Empty States */
+.empty-state {
+  text-align: center;
+  padding: 4rem 2rem;
+}
+
+.empty-icon {
+  font-size: 4rem;
+  opacity: 0.3;
+  margin-bottom: 1rem;
+}
+
+.empty-text {
+  color: #586069;
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.empty-subtext {
+  color: #959da5;
+  font-size: 0.9rem;
+}

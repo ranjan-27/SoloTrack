@@ -1,0 +1,69 @@
+I want you to generate a complete, fully working React web application with Firebase integration (Firestore + Authentication). Provide step-by-step instructions and all code for the app to work perfectly, including Firebase setup.
+
+The app should include:
+
+Firebase integration:
+
+Firestore for storing user-specific data (applications)
+
+Authentication for Login and Signup
+
+Login should support OTP (phone authentication) using Firebase Auth that really fetches OTP to mobile
+
+Signup should work normally with email/password
+
+Frontend components/pages (most are already ready, integrate Firebase):
+
+App.jsx (with React Router)
+
+Navbar.jsx (dynamic links based on authentication)
+
+Hero.jsx (landing page)
+
+Dashboard.jsx (statistics, upcoming deadlines, user-specific)
+
+Application.jsx + ViewForm.jsx (CRUD operations, Firestore integrated)
+
+Analytics.jsx (charts: PieChart for status, LineChart for timeline)
+
+Footer.jsx
+
+Login.jsx and Signup.jsx:
+
+Create frontend and backend fully integrated with Firebase Auth
+
+Login should include OTP login via mobile (Firebase Phone Auth)
+
+Signup uses email/password
+
+Provide basic CSS styling for these pages only
+
+Deadline notifications:
+
+Users should get a notification (browser alert or in-app) when application deadlines are near (3 days or less)
+
+Ensure all other existing components work perfectly with Firebase
+
+Include firebase.js configuration, all imports, and hooks so the app works when pasted.
+
+Application form fields: Company, Role, Type, Deadline, Status, Notes (CRUD with Firestore)
+
+Dashboard: Total applications, Pending, Interviews, Offers, Upcoming deadlines
+
+Analytics: Status distribution (PieChart), Timeline (LineChart), Conversion rate
+
+Provide step-by-step instructions for:
+
+Creating a Firebase project
+
+Enabling Firestore
+
+Enabling Authentication (Email/Password + Phone/OTP)
+
+Connecting React app to Firebase
+
+Setting up Firebase OTP verification for Login
+
+Adding deadline notifications
+
+Output: Provide complete code for each component, Firebase config, Login/Signup pages with OTP and CSS, deadline notifications logic, and instructions to run the app successfully. Only Login and Signup pages need CSS; all other components’ frontend is already done.

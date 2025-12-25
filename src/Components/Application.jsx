@@ -1,36 +1,123 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./Application.css";
+import ViewForm from "./ViewForm";
 
 function Application() {
-  const [formData, setFormData] = useState({
+  const initialForm = {
     company: "",
     role: "",
-    customRole: "",
     type: "",
     deadline: "",
     status: "",
-    notes: ""
-  });
+    notes: "",
+  };
+
+  const roleOptions = [
+    "Software Development Engineer (SDE)",
+    "Full Stack Developer",
+    "Frontend Developer",
+    "Backend Developer",
+    "System Design Engineer",
+    "Data Analyst",
+    "Data Scientist",
+    "Machine Learning Engineer",
+    "DevOps Engineer",
+    "Cloud Engineer",
+    "Cybersecurity Engineer",
+    "QA / Test Engineer",
+    "UI/UX Designer",
+    "Research Intern",
+  ];
+
+  const typeOptions = ["Internship", "Full-Time", "Off-Campus", "On-Campus"];
+
+  const statusOptions = [
+    "Applied",
+    "Application Submitted",
+    "Assessment Stage",
+    "Interview Stage",
+    "Offer Received",
+    "Rejection",
+  ];
+
+  const [form, setForm] = useState(initialForm);
+  const [applications, setApplications] = useState([]);
+  const [editingId, setEditingId] = useState(null);
+
+  useEffect(() => {
+    const saved = localStorage.getItem("solotrack_applications");
+    if (saved) setApplications(JSON.parse(saved));
+  }, []);
+
+  useEffect(() => {
+    localStorage.setItem(
+      "solotrack_applications",
+      JSON.stringify(applications)
+    );
+  }, [applications]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: value
-    }));
+    setForm((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log("Form submitted:", formData);
-    // Add your submission logic here
+    if (!form.company || !form.role) {
+      alert("Company/Exam Name and Role/Position are required.");
+      return;
+    }
+
+    if (editingId) {
+      // Update existing entry
+      setApplications((prev) =>
+        prev.map((app) =>
+          app.id === editingId ? { ...app, ...form } : app
+        )
+      );
+      setEditingId(null);
+    } else {
+      // Add new entry
+      const newEntry = {
+        ...form,
+        id: crypto.randomUUID ? crypto.randomUUID() : Date.now(),
+        createdAt: new Date().toISOString(),
+      };
+      setApplications((prev) => [newEntry, ...prev]);
+    }
+
+    setForm(initialForm);
+  };
+
+  const handleEdit = (id) => {
+    const appToEdit = applications.find((app) => app.id === id);
+    if (appToEdit) {
+      setForm(appToEdit);
+      setEditingId(id);
+    }
+  };
+
+  const handleClearAll = () => {
+    const ok = confirm("Clear all saved applications?");
+    if (!ok) return;
+    setApplications([]);
+    localStorage.removeItem("solotrack_applications");
+  };
+
+  const handleDelete = (id) => {
+    setApplications((prev) => prev.filter((app) => app.id !== id));
   };
 
   return (
     <div className="application-container">
       <a href="/" className="back-home">
         <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-          <path d="M19 12H5M5 12L12 19M5 12L12 5" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
+          <path
+            d="M19 12H5M5 12L12 19M5 12L12 5"
+            stroke="currentColor"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
         </svg>
         Back to Home
       </a>
@@ -45,130 +132,113 @@ function Application() {
           <div className="form-group">
             <label htmlFor="company">
               Company Name <span className="required">*</span>
+              <input
+                type="text"
+                id="company"
+                value={form.company}
+                onChange={handleChange}
+                name="company"
+                placeholder="Enter company name"
+                required
+              />
             </label>
-            <input
-              type="text"
-              id="company"
-              name="company"
-              placeholder="Enter company name"
-              value={formData.company}
-              onChange={handleChange}
-              required
-            />
           </div>
 
           <div className="form-group">
-            <label htmlFor="role">Role / Position</label>
-            <select
-              id="role"
+            <label htmlFor="role">Role / Position *</label>
+            <input
+              list="roles"
               name="role"
-              value={formData.role}
+              value={form.role}
               onChange={handleChange}
-            >
-              <option value="">Select Role</option>
-              <option value="SDE">Software Development Engineer (SDE)</option>
-              <option value="Full Stack Developer">Full Stack Developer</option>
-              <option value="Frontend Developer">Frontend Developer</option>
-              <option value="Backend Developer">Backend Developer</option>
-              <option value="System Design Engineer">System Design Engineer</option>
-              <option value="Data Analyst">Data Analyst</option>
-              <option value="Data Scientist">Data Scientist</option>
-              <option value="Machine Learning Engineer">Machine Learning Engineer</option>
-              <option value="DevOps Engineer">DevOps Engineer</option>
-              <option value="Cloud Engineer">Cloud Engineer</option>
-              <option value="Cybersecurity Engineer">Cybersecurity Engineer</option>
-              <option value="QA / Test Engineer">QA / Test Engineer</option>
-              <option value="UI/UX Designer">UI/UX Designer</option>
-              <option value="Research Intern">Research Intern</option>
-              <option value="Other">Other (Type manually)</option>
-            </select>
+              placeholder="Select or type a role"
+              required
+            />
+            <datalist id="roles">
+              {roleOptions.map((r) => (
+                <option key={r} value={r} />
+              ))}
+            </datalist>
           </div>
-
-          {formData.role === "Other" && (
-            <div className="form-group custom-role-input">
-              <label htmlFor="customRole">Custom Role</label>
-              <input
-                type="text"
-                id="customRole"
-                name="customRole"
-                placeholder="Enter custom role"
-                value={formData.customRole}
-                onChange={handleChange}
-              />
-            </div>
-          )}
 
           <div className="form-group">
             <label htmlFor="type">Placement Type</label>
-            <select
-              id="type"
-              name="type"
-              value={formData.type}
-              onChange={handleChange}
-            >
+            <select name="type" value={form.type} onChange={handleChange}>
               <option value="">Select type</option>
-              <option value="Internship">Internship</option>
-              <option value="Full-Time">Full-Time</option>
-              <option value="Off-Campus">Off-Campus</option>
-              <option value="On-Campus">On-Campus</option>
+              {typeOptions.map((t) => (
+                <option key={t} value={t}>
+                  {t}
+                </option>
+              ))}
             </select>
           </div>
 
           <div className="form-group">
-            <label htmlFor="deadline">Deadline</label>
-            <input
-              type="date"
-              id="deadline"
-              name="deadline"
-              value={formData.deadline}
-              onChange={handleChange}
-            />
+            <label htmlFor="deadline">
+              Deadline
+              <input
+                type="date"
+                id="deadline"
+                name="deadline"
+                value={form.deadline}
+                onChange={handleChange}
+              />
+            </label>
           </div>
 
           <div className="form-group">
-            <label htmlFor="status">Status</label>
-            <select
-              id="status"
-              name="status"
-              value={formData.status}
-              onChange={handleChange}
-            >
-              <option value="">Select status</option>
-              <option value="Applied">Applied</option>
-              <option value="Application Submitted">Application Submitted</option>
-              <option value="Assessment Stage">Assessment Stage</option>
-              <option value="Interview Stage">Interview Stage</option>
-              <option value="Offer Received">Offer Received</option>
-              <option value="Rejection">Rejection</option>
-            </select>
+            <label htmlFor="status">
+              Status
+              <select
+                name="status"
+                value={form.status}
+                onChange={handleChange}
+              >
+                <option value="">Select status</option>
+                {statusOptions.map((s) => (
+                  <option key={s} value={s}>
+                    {s}
+                  </option>
+                ))}
+              </select>
+            </label>
           </div>
 
           <div className="form-group full-width">
-            <label htmlFor="notes">Notes</label>
-            <textarea
-              id="notes"
-              name="notes"
-              placeholder="Add remarks or additional details..."
-              value={formData.notes}
-              onChange={handleChange}
-              rows="4"
-            />
+            <label>
+              Notes
+              <textarea
+                name="notes"
+                value={form.notes}
+                onChange={handleChange}
+                placeholder="Any reminders or context"
+                rows={3}
+              />
+            </label>
           </div>
 
           <div className="form-actions">
             <button type="submit" className="submit-btn">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none">
-                <path d="M5 13l4 4L19 7" stroke="currentColor" strokeWidth="2" strokeLinecap="round"/>
-              </svg>
-              Submit Application
+              {editingId ? "Update Application" : "Add Application"}
             </button>
-            <button type="reset" className="reset-btn" onClick={() => setFormData({
-              company: "", role: "", customRole: "", type: "", deadline: "", status: "", notes: ""
-            })}>
+            <button
+              type="reset"
+              className="reset-btn"
+              onClick={() => setForm(initialForm)}
+            >
               Reset Form
             </button>
           </div>
         </form>
+
+        <div className="view">
+          <ViewForm
+            applications={applications}
+            onClear={handleClearAll}
+            onDelete={handleDelete}
+            onEdit={handleEdit}
+          />
+        </div>
       </div>
     </div>
   );

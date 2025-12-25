@@ -1,0 +1,80 @@
+.analytics-container {
+  padding: 2rem;
+}
+
+.analytics-container.light {
+  color: #333;
+}
+
+.analytics-container.dark {
+  color: #fff;
+}
+
+.analytics-title {
+  font-size: 2rem;
+  margin-bottom: 2rem;
+}
+
+.analytics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.analytics-card {
+  padding: 2rem;
+  border-radius: 15px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.analytics-card.light {
+  background: white;
+}
+
+.analytics-card.dark {
+  background: #2d3561;
+}
+
+.no-data {
+  text-align: center;
+  color: #888;
+  padding: 2rem;
+}
+
+.conversion-container {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+}
+
+.conversion-bar {
+  flex: 1;
+  background: #f0f2f5;
+  height: 30px;
+  border-radius: 15px;
+  overflow: hidden;
+  position: relative;
+}
+
+.analytics-container.dark .conversion-bar {
+  background: #1a1a2e;
+}
+
+.conversion-fill {
+  height: 100%;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  transition: width 1s ease;
+}
+
+.conversion-text {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #888;
+}
+
+.conversion-rate {
+  font-size: 3rem;
+  font-weight: bold;
+  color: #667eea;
+}

@@ -144,7 +144,6 @@
   transition: all 0.3s ease;
   background: white;
   font-family: inherit;
-  color: #333;
 }
 
 .form-group input:focus,
@@ -175,59 +174,6 @@
   background-repeat: no-repeat;
   background-position: right 1rem center;
   padding-right: 3rem;
-  background-color: white;
-}
-
-/* Fix for date input dropdown - removes black flash */
-.form-group input[type="date"] {
-  color-scheme: light;
-  position: relative;
-  background-color: white;
-  accent-color: #667eea;
-}
-
-.form-group input[type="date"]::-webkit-calendar-picker-indicator {
-  cursor: pointer;
-  opacity: 0.6;
-  filter: invert(0);
-  transition: opacity 0.2s ease;
-  background: transparent;
-}
-
-.form-group input[type="date"]::-webkit-calendar-picker-indicator:hover {
-  opacity: 1;
-}
-
-/* Remove black flash from webkit calendar */
-.form-group input[type="date"]::-webkit-datetime-edit {
-  padding: 0;
-  background: transparent;
-  color: #333;
-}
-
-.form-group input[type="date"]::-webkit-datetime-edit-fields-wrapper {
-  background: transparent;
-}
-
-.form-group input[type="date"]::-webkit-datetime-edit-text {
-  color: #333;
-  padding: 0 0.25rem;
-}
-
-.form-group input[type="date"]::-webkit-datetime-edit-month-field,
-.form-group input[type="date"]::-webkit-datetime-edit-day-field,
-.form-group input[type="date"]::-webkit-datetime-edit-year-field {
-  background: transparent;
-  color: #333;
-}
-
-/* Webkit picker container styling to prevent black flash */
-.form-group input[type="date"]::-webkit-date-and-time-value {
-  background: transparent;
-}
-
-.form-group input[type="date"]::-webkit-input-placeholder {
-  color: #999;
 }
 
 .form-actions {
@@ -367,3 +313,5 @@
     padding: 1.25rem;
   }
 }
+
+
