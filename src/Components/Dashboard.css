@@ -320,3 +320,42 @@
   color: #959da5;
   font-size: 0.9rem;
 }
+
+
+
+.back-home {
+  position: absolute;
+  top: 2rem;
+  margin-top:75px;
+  left: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  z-index: 10;
+}
+ .back-home-link { display: inline-flex; align-items: center; gap: 0.2rem; text-decoration: none; color: #667eea; /* purple-blue */ font-weight: 800; font-size: 1.2rem; transition: color 0.3s ease; }
+.back-home:hover {
+  background: rgb(49, 2, 2, 0.2);
+  border-color: rgb(23, 2, 2, 0.4);
+  box-shadow: 0 0 20px rgba(255, 255, 255, 0.3),
+              0 0 40px rgba(102, 126, 234, 0.2);
+  transform: translateX(-5px);
+}
+
+.back-home svg {
+  transition: transform 0.3s ease;
+
+}
+
+.back-home:hover svg {
+  transform: translateX(-3px);
+}

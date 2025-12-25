@@ -12,7 +12,7 @@
 
 .analytics-title {
   font-size: 2rem;
-  margin-bottom: 2rem;
+  margin-top: 3rem;
 }
 
 .analytics-grid {
@@ -77,4 +77,27 @@
   font-size: 3rem;
   font-weight: bold;
   color: #667eea;
+}
+
+
+ .back-home-link { display: inline-flex; align-items: center; gap: 0.2rem; text-decoration: none; color: #667eea; /* purple-blue */ font-weight: 700; font-size: 1.2rem; transition: color 0.3s ease;
+                 }
+.back-home {
+  position: absolute;
+  top: 2rem;
+  margin-bottom:6rem;
+  left: 2rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: rgba(255, 255, 255, 0.1);
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: 600;
+  backdrop-filter: blur(10px);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
+  z-index: 10;
 }

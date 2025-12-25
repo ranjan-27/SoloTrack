@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import "./Dashboard.css";
+import { toast, ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const Dashboard = ({ darkMode = false }) => {
   const [applications, setApplications] = useState(() => {
@@ -26,8 +28,8 @@ const Dashboard = ({ darkMode = false }) => {
         }
       }
     };
-    window.addEventListener('storage', loadData);
-    return () => window.removeEventListener('storage', loadData);
+    window.addEventListener("storage", loadData);
+    return () => window.removeEventListener("storage", loadData);
   }, []);
 
   const stats = {
@@ -48,6 +50,9 @@ const Dashboard = ({ darkMode = false }) => {
     .sort((a, b) => new Date(a.deadline) - new Date(b.deadline))
     .slice(0, 5);
 
+
+ 
+
   const StatCard = ({ title, value, color, icon }) => (
     <div
       className={`stat-card ${darkMode ? "dark" : "light"}`}
@@ -55,19 +60,55 @@ const Dashboard = ({ darkMode = false }) => {
     >
       <div className="stat-icon">{icon}</div>
       <h3 className="stat-title">{title}</h3>
-      <p className="stat-value" style={{ color }}>{value}</p>
+      <p className="stat-value" style={{ color }}>
+        {value}
+      </p>
     </div>
   );
 
   return (
     <div className={`dashboard-container ${darkMode ? "dark" : "light"}`}>
+      <div className="back-home">
+        <a href="/" className="back-home-link">
+          <svg width="40" height="20" viewBox="0 0 24 24" fill="none">
+            <path
+              d="M19 12H5M5 12L12 19M5 12L12 5"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+            />
+          </svg>
+          Back to Home
+        </a>
+      </div>
+
       <h2 className="dashboard-title">Dashboard Overview</h2>
 
       <div className="stats-grid">
-        <StatCard title="Total Applications" value={stats.total} color="#667eea" icon="📊" />
-        <StatCard title="Pending" value={stats.pending} color="#f59e0b" icon="⏳" />
-        <StatCard title="Interviews" value={stats.interviews} color="#8b5cf6" icon="🎤" />
-        <StatCard title="Offers" value={stats.offers} color="#10b981" icon="🎉" />
+        <StatCard
+          title="Total Applications"
+          value={stats.total}
+          color="#667eea"
+          icon="📊"
+        />
+        <StatCard
+          title="Pending"
+          value={stats.pending}
+          color="#f59e0b"
+          icon="⏳"
+        />
+        <StatCard
+          title="Interviews"
+          value={stats.interviews}
+          color="#8b5cf6"
+          icon="🎤"
+        />
+        <StatCard
+          title="Offers"
+          value={stats.offers}
+          color="#10b981"
+          icon="🎉"
+        />
       </div>
 
       <div className={`deadlines-card ${darkMode ? "dark" : "light"}`}>
@@ -95,7 +136,9 @@ const Dashboard = ({ darkMode = false }) => {
                   <div className="deadline-info">
                     <div
                       className="deadline-days"
-                      style={{ color: daysUntil <= 3 ? "#ef4444" : "#667eea" }}
+                      style={{
+                        color: daysUntil <= 3 ? "#ef4444" : "#667eea",
+                      }}
                     >
                       {daysUntil === 0
                         ? "Today!"
@@ -111,8 +154,12 @@ const Dashboard = ({ darkMode = false }) => {
           <p className="no-deadlines">No upcoming deadlines</p>
         )}
       </div>
+
+      
+     
     </div>
   );
 };
 
 export default Dashboard;
+

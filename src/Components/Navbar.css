@@ -56,13 +56,14 @@
   list-style: none;
   margin: 0;
   padding: 0;
+  
 }
 
 .left ul li {
   display: flex;
   align-items: center;
   gap: 0.6rem;
-  color: #e0e0e0;
+  color: #e5dcdc;
   font-size: 1.25rem;
  font-family: 'Roboto', sans-serif, 'Arial', sans-serif;
   cursor: pointer;
@@ -70,10 +71,11 @@
   border-radius: 10px;
   background: rgba(255, 255, 255, 0.05);
   transition: all 0.3s ease;
+  
 }
 
 .left ul li:hover {
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  background: linear-gradient(135deg, #667eea, #5403a5);
   color: #fff;
   transform: translateY(-3px);
 }
@@ -88,38 +90,6 @@
   display: flex;
   align-items: center;
   gap: 1.45rem;
-}
-
-/* Search Bar */
-.searchbar {
-  position: relative;
-}
-
-.searchbar input {
-  width: 250px;
-  padding: 0.9rem 2.68rem 1.0rem 1.1rem;
-  border-radius: 25px;
-  border: 2px solid rgba(102, 126, 234, 0.3);
-  background: rgba(255, 255, 255, 0.05);
-  color: #e0e0e0;
-  outline: none;
-  transition: 0.3s ease;
-}
-
-.searchbar input:focus {
-  width: 300px;
-  border-color: #6a7dd2;
-  background: rgb(245, 245, 245, 0.1);
-}
-
-
-.searchbar svg {
-  position: absolute;
-  right: 12px;
-  top: 50%;
-  transform: translateY(-50%);
-  width: 20px;
-  height: 20px;
 }
 
 /* ---------------- BELL ICON ---------------- */
@@ -143,33 +113,24 @@
 }
 
 /* Notification dot */
-.bellicon::after {
-  content: '';
-  position: absolute;
-  top: 4px;
-  right: 4px;
-  width: 8px;
-  height: 8px;
-  background: red;
-  border-radius: 50%;
-}
+
 
 /* ---------------- PROFILE ICON ---------------- */
 .profileicon {
   cursor: pointer;
   padding: 0.3rem;
   border-radius: 50%;
-  background: linear-gradient(135deg, #667eea, #764ba2);
+  border: 3px solid #667eea;
   transition: 0.3s ease;
 }
 
 .profileicon svg {
-  width: 42px;
-  height: 42px;
+  width: 35px;
+  height: 35px;
 }
 
 .profileicon:hover {
-  transform: scale(1.1);
+  transform: scale(1.2);
 }
 
 /* ---------------- RESPONSIVE ---------------- */
@@ -187,3 +148,4 @@
     width: 140px;
   }
 }
+
