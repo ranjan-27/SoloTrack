@@ -17,7 +17,3 @@ npm start
 Note
 
 Data is stored locally in the browser.
-
-Author
-
-Ranjan Kumar Gupta
