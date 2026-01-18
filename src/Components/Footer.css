@@ -5,12 +5,13 @@
 /* 🔴 KEY FIX 1: avoid 100vw */
 .footer {
   width: 100%;
-  min-height: 43vh;
+  min-height: 28vh;
   background: linear-gradient(135deg, #0f0c29 0%, #302b63 25%, #24243e 50%, #0f0c29 100%);
   background-size: 400% 400%;
   animation: gradientBG 15s ease infinite;
   position: relative;
-  overflow: hidden; /* 🔴 hard stop overflow */
+  overflow: hidden;
+  /* 🔴 hard stop overflow */
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -27,13 +28,13 @@
 
 /* Footer Content */
 .footer-content {
- 
+
   position: relative;
   z-index: 3;
   text-align: center;
   margin-bottom: 13rem;
-  
-  
+
+
 }
 
 /* Footer Name Container */
@@ -41,17 +42,19 @@
   position: absolute;
   bottom: 0;
   left: 50%;
-  transform: translateX(-50%); /* 🔴 center safely */
+  transform: translateX(-50%);
+  /* 🔴 center safely */
   width: 100%;
   max-width: 100%;
   height: 29vh;
   display: flex;
   align-items: center;
   justify-content: center;
-  overflow: hidden; /* 🔴 critical */
+  overflow: hidden;
+  /* 🔴 critical */
   pointer-events: none;
   z-index: 2;
-  margin-bottom:10px;
+  margin-bottom: 10px;
 }
 
 /* 🔴 FIX 3: control giant text width */
@@ -65,7 +68,8 @@
   left: 50%;
   transform: translateX(-50%);
   font-family: 'Poppins', sans-serif;
-  font-size: clamp(6rem, 18vw, 18rem); /* 🔴 responsive text */
+  font-size: clamp(6rem, 18vw, 18rem);
+  /* 🔴 responsive text */
   font-weight: 900;
   line-height: 1;
   letter-spacing: 0.039em;
@@ -95,17 +99,133 @@ body {
 
 /* Animations remain unchanged */
 @keyframes gradientBG {
-  0% { background-position: 0% 50%; }
-  50% { background-position: 100% 50%; }
-  100% { background-position: 0% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
 }
 
 @keyframes gradientText {
-  0% { background-position: 0% 50%; }
-  100% { background-position: 300% 50%; }
+  0% {
+    background-position: 0% 50%;
+  }
+
+  100% {
+    background-position: 300% 50%;
+  }
 }
 
-.f1{
-  color:white;
-  font-size:2rem;
+.f1 {
+  color: white;
+  font-size: 2rem;
+}
+
+/* Footer.css */
+
+/* Your existing code remains unchanged above */
+
+/* Footer.css */
+
+/* Your existing code remains unchanged above */
+
+/* ✅ Responsive Enhancements */
+@media (max-width: 1024px) {
+  .footer {
+    padding: 1.2rem 1rem;
+  }
+
+  .footer-content {
+    margin-bottom: 8rem;
+  }
+
+  .footer-name {
+    height: 22vh;
+  }
+
+  .footer-name::before,
+  .footer-name::after {
+    font-size: clamp(4rem, 14vw, 12rem);
+  }
+
+  .f1 {
+    font-size: 1.6rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    padding: 1.1rem 0.8rem;
+  }
+
+  .footer-content {
+    margin-bottom: 8rem;
+  }
+
+  .footer-name {
+    height: 23vh;
+  }
+
+  .footer-name::before,
+  .footer-name::after {
+    font-size: clamp(3rem, 17vw, 9rem);
+  }
+
+  .f1 {
+    font-size: 1.4rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .footer {
+    padding: 0.8rem 0.6rem;
+  }
+
+  .footer-content {
+    margin-bottom: 4rem;
+  }
+
+  .footer-name {
+    height: 15vh;
+    margin-bottom: 5px;
+  }
+
+  .footer-name::before,
+  .footer-name::after {
+    font-size: clamp(2.5rem, 17vw, 7rem);
+    letter-spacing: 0.02em;
+  }
+
+  .f1 {
+    font-size: 1.2rem;
+  }
+}
+
+@media (max-width: 360px) {
+  .footer {
+    padding: 0.6rem 0.5rem;
+  }
+
+  .footer-content {
+    margin-bottom: 3rem;
+  }
+
+  .footer-name {
+    height: 12vh;
+  }
+
+  .footer-name::before,
+  .footer-name::after {
+    font-size: clamp(2rem, 9vw, 6rem);
+  }
+
+  .f1 {
+    font-size: 1rem;
+  }
 }
